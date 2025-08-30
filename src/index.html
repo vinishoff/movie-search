@@ -3,29 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Search</title>
+  <title id="pageTitle"></title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Movie Search</h1>
+  <h1 id="title"></h1>
+
+  <!-- Nav - Select language -->
+  <nav>
+    <h2 id="titleLangNav"></h2>
+    <select id="selectLanguage" class="selectLanguage">
+      <option value="en">English</option>
+      <option value="pt-BR">Português</option>
+    </select>
+  </nav>
+
   <!-- Search section -->
   <section id="searchSection" class="searchSection">
     <div class="divTitulo">
-      <h2>Movie Search Section</h2>
-      <p>Movie Search</p>
+      <h2 id="titleSearchSection"></h2>
+      <p id="titleSearch"></p>
     </div>
     <div class="divInput">
       <form id="searchForm">
-        <input id="searchInput" class="searchInput" placeholder="Search for a movie, tv show..." required>
-        <button id="searchBttn" class="searchBttn" type="submit">Search</button>
+        <input id="searchInput" class="searchInput" placeholder="" required>
+        <button id="searchBttn" class="searchBttn" type="submit"></button>
       </form>
     </div>
   </section>
 
   <!-- Cards section -->
   <section id="cardsSection" class="cardsSection">
-    <h2>Movie Cards Section</h2>
+    <h2 id="titleCardsSection"></h2>
   </section>
+
   <script type="module" src="script.js"></script>
 </body>
 </html>

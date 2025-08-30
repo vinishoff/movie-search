@@ -1,4 +1,12 @@
 import { config } from "/config.js";
+import { LanguageManager } from "./class/languagesManager.js";
+
+const languageManager = new LanguageManager();
+
+document.addEventListener("DOMContentLoaded", () => {
+  languageManager.setLanguage(languageManager.currentLang);
+  document.getElementById("selectLanguage").value = languageManager.currentLang;
+})
 
 const elementForm = document.getElementById("searchForm");
 elementForm.addEventListener("submit", async (event) => {
@@ -6,12 +14,12 @@ elementForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if(!valueInput){
-    alert("Empty input!")
+    alert(languageManager.msgError.emptyField)
     return
   }
 
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${config.TMDB_API_KEY}&query=${encodeURIComponent(valueInput)}`, {
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${config.TMDB_API_KEY}&query=${encodeURIComponent(valueInput)}&language=${languageManager.currentLang}`, {
       method: "GET",
       headers: {
         'Content-Type':'application/json'
@@ -24,7 +32,7 @@ elementForm.addEventListener("submit", async (event) => {
 
     const data = await response.json();
     if(!data.results.length){
-      alert("No results found.")
+      alert(languageManager.msgError.noFound)
       return
     }
 
@@ -45,4 +53,9 @@ elementForm.addEventListener("submit", async (event) => {
   } catch (error) {
     alert(error);
   }
+})
+
+const selectField = document.getElementById("selectLanguage");
+selectField.addEventListener("change", () => {
+  languageManager.setLanguage(selectField.value);
 })
